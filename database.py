@@ -19,6 +19,21 @@ def init_db():
             db.cursor().executescript(f.read())
         db.commit()
 
+def commit_db(g, query, args=()):
+    g.db.execute(query, args)
+    g.db.commit()
+
+def query_db(g, query, args=(), one=False, list=False):
+    cursor = g.db.execute(query, args)
+    data = cursor.fetchall()
+    cursor.close()
+    if one:
+        return data[0] if data else None
+    elif list:
+        return [row[0] for row in data]
+    else:
+        return data
+
 if __name__ == '__main__':
     selection = raw_input("Warning! This will reset any previously created database entries! Continue? Y/n   ")
     if selection == "Y":

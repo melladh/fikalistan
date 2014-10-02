@@ -7,4 +7,4 @@ Prerequirements:
 pip install flask
 
 Configure:
-run config.py
+run database.py
