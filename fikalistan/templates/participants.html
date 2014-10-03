@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% import "helpers/forms.html" as forms %}
+{% block content %}
+    <h2>{{ group }}</h2>
+    <ul class=entries>
+        {% for entry in participants %}
+            <li>{{ entry }}
+        {% else %}
+            <li><em>No fans of fika here yet</em>
+        {% endfor %}
+    </ul>
+    <form action="{{ url_for('.add_participant') }}" method=post class=add-entry>
+        <h4>Add participant</h4>
+        {{ forms.render(form) }}
+        <p><input type="Submit" value="Add"></p>
+    </form>
+{% endblock %}

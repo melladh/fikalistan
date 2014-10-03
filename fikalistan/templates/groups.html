@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% import "helpers/forms.html" as forms %}
+
+{% block content %}
+{{ super() }}
+
+<fieldset>
+<legend>Groups</legend>
+    {%  for name in data %}
+        <h2><a href="/{{ name }}">{{ name }}</a></h2>
+    {% else %}
+        <em>No groups added yet</em>
+    {% endfor %}
+
+
+<form action="{{ url_for('.add_group') }}" method="POST">
+<h4>Add a group</h4>
+{{ forms.render(form) }}
+<p><input type="Submit" value="Add"></p>
+
+</form>
+</fieldset>
+{% endblock content %}
